@@ -75,8 +75,9 @@
       box-shadow: 0 8px 20px rgba(111, 63, 155, 0.25);
     }
 
+    /* front background จะถูกเปลี่ยนสีด้วย JavaScript */
     .card-front {
-      background: linear-gradient(145deg, #b79ce8, #9a6edc); /* purple gradient */
+      background: linear-gradient(145deg, #b79ce8, #9a6edc);
       color: white;
       font-size: 18px;
       gap: 4px;
@@ -142,7 +143,7 @@
   <div class="page">
     <h1>Mindfulness Card of the Day</h1>
     <p class="subtitle">
-      Tap the purple card to reveal today's mindfulness message.
+      แตะที่การ์ดเพื่อสุ่มข้อความแห่งสติประจำวันนี้ 💫
     </p>
 
     <p class="today-label" id="date-label"></p>
@@ -152,7 +153,7 @@
         <div class="card-inner">
           <!-- front -->
           <div class="card-face card-front">
-            <span class="emoji">💜</span>
+            <span class="emoji">🃏</span>
             <div>Tap to draw</div>
             <div>your mindfulness card</div>
           </div>
@@ -169,7 +170,7 @@
     </div>
 
     <p class="hint">
-      Let this card guide your intention for today.
+      ให้ผู้เล่นอ่านการ์ด หยุดนิ่งสักครู่ แล้วแบ่งปันความรู้สึกหรือสิ่งที่สังเกตเห็น
     </p>
 
     <div class="controls">
@@ -179,32 +180,46 @@
   </div>
 
   <script>
+    /* —— ข้อความบนการ์ด: ไทย + อังกฤษ —— */
     const mindfulnessCards = [
-  "หายใจเข้า–ออกช้า ๆ 3 ครั้ง\nTake 3 slow breaths and feel your body soften.",
-  "มองรอบตัว แล้วบอก 3 สิ่งที่เห็น 2 สิ่งที่ได้ยิน และ 1 สิ่งที่รู้สึกได้\nName 3 things you see, 2 things you hear, 1 thing you feel.",
-  "วางมือบนหัวใจ แล้วบอกตัวเองว่า “ตอนนี้ฉันปลอดภัย”\nPlace your hand on your heart and say: “I am safe in this moment.”",
-  "หลับตา 10 วินาที แล้วฟังเสียงรอบตัวอย่างตั้งใจ\nClose your eyes for 10 seconds and listen like a curious explorer.",
-  "คิดถึงใครสักคนที่คุณรู้สึกขอบคุณ\nThink of someone you’re grateful for today.",
-  "ยืดแขนขึ้นฟ้าแล้วค่อย ๆ ปล่อยลงอย่างอ่อนโยน\nStretch your arms up, then release gently.",
-  "วางเท้าบนพื้น แล้วจินตนาการว่ามีรากเติบโตลงดิน\nPlace your feet on the ground and imagine roots holding you steady.",
-  "ยิ้มเบา ๆ แล้วสังเกตว่าร่างกายรู้สึกอย่างไร\nSmile softly and notice how your body feels.",
-  "วางมือบนท้อง แล้วรู้สึกถึงการหายใจเข้า–ออก 5 ครั้ง\nPlace both hands on your belly and feel 5 breaths.",
-  "พูดประโยคให้กำลังใจตัวเอง เช่น “ฉันกำลังทำดีที่สุดแล้ว”\nSay a kind sentence to yourself: “I am doing my best.”",
-  "ฟังเสียงลมหายใจของตัวเองอย่างอ่อนโยน\nListen closely to the sound of your own breath.",
-  "นั่งเงียบ ๆ แล้วสังเกตความรู้สึกในใจ โดยไม่ตัดสิน\nSit quietly and notice how you feel, without judgment.",
-  "มองมือของตัวเอง แล้วขอบคุณที่มันช่วยคุณมามากมาย\nLook at your hands and thank them for all they do.",
-  "กอดตัวเองเบา ๆ เพื่อปลอบโยนหัวใจ\nGive yourself a soft self-hug to comfort your heart.",
-  "เขียนชื่อหนึ่งสิ่งที่ทำให้คุณยิ้มในวันนี้\nThink of one thing that made you smile today."
+      "หายใจเข้า–ออกช้า ๆ 3 ครั้ง\nTake 3 slow breaths and feel your body soften.",
+      "มองรอบตัว แล้วบอก 3 สิ่งที่เห็น 2 สิ่งที่ได้ยิน และ 1 สิ่งที่รู้สึกได้\nName 3 things you see, 2 things you hear, 1 thing you feel.",
+      "วางมือบนหัวใจ แล้วบอกตัวเองว่า “ตอนนี้ฉันปลอดภัย”\nPlace your hand on your heart and say: “I am safe in this moment.”",
+      "หลับตา 10 วินาที แล้วฟังเสียงรอบตัวอย่างตั้งใจ\nClose your eyes for 10 seconds and listen like a curious explorer.",
+      "คิดถึงใครสักคนที่คุณรู้สึกขอบคุณ\nThink of someone you’re grateful for today.",
+      "ยืดแขนขึ้นฟ้าแล้วค่อย ๆ ปล่อยลงอย่างอ่อนโยน\nStretch your arms up, then release gently.",
+      "วางเท้าบนพื้น แล้วจินตนาการว่ามีรากเติบโตลงดิน\nPlace your feet on the ground and imagine roots holding you steady.",
+      "ยิ้มเบา ๆ แล้วสังเกตว่าร่างกายรู้สึกอย่างไร\nSmile softly and notice how your body feels.",
+      "วางมือบนท้อง แล้วรู้สึกถึงการหายใจเข้า–ออก 5 ครั้ง\nPlace both hands on your belly and feel 5 breaths.",
+      "พูดประโยคให้กำลังใจตัวเอง เช่น “ฉันกำลังทำดีที่สุดแล้ว”\nSay a kind sentence to yourself: “I am doing my best.”",
+      "ฟังเสียงลมหายใจของตัวเองอย่างอ่อนโยน\nListen closely to the sound of your own breath.",
+      "นั่งเงียบ ๆ แล้วสังเกตความรู้สึกในใจ โดยไม่ตัดสิน\nSit quietly and notice how you feel, without judgment.",
+      "มองมือของตัวเอง แล้วขอบคุณที่มันช่วยคุณมามากมาย\nLook at your hands and thank them for all they do.",
+      "กอดตัวเองเบา ๆ เพื่อปลอบโยนหัวใจ\nGive yourself a soft self-hug to comfort your heart.",
+      "คิดถึงหนึ่งสิ่งที่ทำให้คุณยิ้มในวันนี้\nThink of one thing that made you smile today."
+    ];
+
+    /* —— ชุดสีหลากสีสำหรับหน้าไพ่ —— */
+    const cardColors = [
+      "linear-gradient(145deg, #b79ce8, #9a6edc)",  // purple
+      "linear-gradient(145deg, #ffafbd, #ffc3a0)",  // pink–peach
+      "linear-gradient(145deg, #a1c4fd, #c2e9fb)",  // blue–sky
+      "linear-gradient(145deg, #fddb92, #d1fdff)",  // yellow–mint
+      "linear-gradient(145deg, #84fab0, #8fd3f4)",  // green–turquoise
+      "linear-gradient(145deg, #f6d365, #fda085)",  // warm sunset
+      "linear-gradient(145deg, #fccb90, #d57eeb)"   // orange–violet
     ];
 
     const cardElement = document.getElementById("card");
     const cardTextElement = document.getElementById("card-text");
     const newCardBtn = document.getElementById("new-card-btn");
     const flipBackBtn = document.getElementById("flip-back-btn");
+    const cardFront = document.querySelector(".card-front");
 
     let lastIndex = -1;
     let hasShownFirst = false;
 
+    /* —— แสดงวันที่วันนี้ —— */
     const dateLabel = document.getElementById("date-label");
     const today = new Date();
     dateLabel.textContent = today.toLocaleDateString(undefined, {
@@ -214,14 +229,24 @@
       day: "numeric"
     });
 
+    /* เลือกสีแบบสุ่ม */
+    function setRandomCardColor() {
+      const colorIndex = Math.floor(Math.random() * cardColors.length);
+      cardFront.style.background = cardColors[colorIndex];
+    }
+
+    /* สุ่มการ์ด + เปลี่ยนสี */
     function drawCard() {
+      if (mindfulnessCards.length === 0) return;
+
       let index;
       do {
         index = Math.floor(Math.random() * mindfulnessCards.length);
-      } while (index === lastIndex);
+      } while (index === lastIndex && mindfulnessCards.length > 1);
       lastIndex = index;
 
       cardTextElement.innerHTML = mindfulnessCards[index].replace(/\n/g, "<br />");
+      setRandomCardColor();    // เปลี่ยนสีหน้าไพ่ทุกครั้งที่สุ่ม
 
       if (!cardElement.classList.contains("flipped")) {
         cardElement.classList.add("flipped");
@@ -229,12 +254,19 @@
       hasShownFirst = true;
     }
 
+    /* แตะที่การ์ด */
     cardElement.addEventListener("click", () => {
-      if (!hasShownFirst) drawCard();
-      else cardElement.classList.toggle("flipped");
+      if (!hasShownFirst) {
+        drawCard();
+      } else {
+        cardElement.classList.toggle("flipped");
+      }
     });
 
+    /* ปุ่มสุ่มการ์ดใหม่ */
     newCardBtn.addEventListener("click", drawCard);
+
+    /* ปุ่มปิดการ์ด */
     flipBackBtn.addEventListener("click", () => {
       cardElement.classList.remove("flipped");
     });
